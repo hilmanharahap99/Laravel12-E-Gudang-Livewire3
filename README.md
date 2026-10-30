@@ -1,58 +1,334 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📦 E-Gudang – Sistem Informasi Manajemen Gudang
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**E-Gudang** merupakan aplikasi berbasis web yang dikembangkan untuk membantu proses pengelolaan data gudang secara lebih terstruktur dan efisien. Aplikasi ini dibangun menggunakan framework Laravel dengan Livewire sebagai pendukung interaksi antarmuka yang dinamis.
 
-## About Laravel
+Project ini dirancang untuk mendukung pengelolaan data pengguna, kategori barang, serta pengembangan sistem manajemen inventaris dengan pembagian hak akses berdasarkan role pengguna.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 Teknologi yang Digunakan
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Berikut teknologi dan tools yang digunakan dalam pengembangan aplikasi E-Gudang:
 
-## Learning Laravel
+| Teknologi | Keterangan |
+|---|---|
+| PHP 8.3 | Bahasa pemrograman backend |
+| Laravel 13 | Backend framework |
+| Livewire 3 | Framework untuk membangun komponen dinamis |
+| SQLite / MySQL | Database |
+| Blade Template | Template engine Laravel |
+| AdminLTE 3 | Template dashboard admin |
+| Tailwind CSS 4 | Styling antarmuka |
+| Vite | Frontend build tool |
+| Composer | Dependency management PHP |
+| NPM | Dependency management frontend |
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Library Pendukung
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- `barryvdh/laravel-dompdf` – Mendukung pembuatan dokumen PDF.
+- `maatwebsite/excel` – Mendukung kebutuhan ekspor dan impor Excel.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+## ✨ Fitur Aplikasi
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### 1. Manajemen Pengguna (User Management)
 
-```bash
-composer require laravel/boost --dev
+Fitur untuk mengelola data pengguna yang memiliki akses ke dalam sistem.
 
-php artisan boost:install
+- Menampilkan daftar pengguna.
+- Menambahkan pengguna baru.
+- Mengubah informasi pengguna.
+- Menghapus data pengguna.
+- Pencarian berdasarkan nama, email, dan role.
+- Pagination data pengguna.
+- Validasi input pengguna.
+- Enkripsi password menggunakan hashing Laravel.
+
+### 2. Manajemen Kategori (Category Management)
+
+Fitur untuk mengelola kategori barang dalam sistem gudang.
+
+- Menampilkan daftar kategori.
+- Menambahkan kategori baru.
+- Mengubah nama kategori.
+- Menghapus kategori.
+- Pencarian kategori.
+- Pagination data kategori.
+- Validasi nama kategori agar tidak duplikat.
+
+### 3. Manajemen Barang (Item Management)
+
+Tersedia halaman awal untuk pengelolaan data barang pada area Admin dan Super Admin. Implementasi proses CRUD dan pengelolaan inventaris masih dalam tahap pengembangan.
+
+### 4. Role Pengguna
+
+Sistem menyediakan definisi dua jenis role pengguna:
+
+- **Super Admin** – Ditujukan untuk pengelolaan administrasi sistem.
+- **Admin** – Ditujukan untuk kebutuhan operasional pengelolaan gudang.
+
+---
+
+## 📂 Struktur Folder
+
+Berikut gambaran struktur utama project:
+
+```text
+e-gudang/
+│
+├── app/
+│   ├── Livewire/
+│   │   ├── Admin/
+│   │   │   └── Barang/
+│   │   │       └── Index.php
+│   │   │
+│   │   ├── Auth/
+│   │   │   └── Login.php
+│   │   │
+│   │   ├── Superadmin/
+│   │   │   ├── Barang/
+│   │   │   │   └── Index.php
+│   │   │   ├── Kategori/
+│   │   │   │   └── Index.php
+│   │   │   └── User/
+│   │   │       └── Index.php
+│   │   │
+│   │   └── Dashboard.php
+│   │
+│   ├── Models/
+│   │   ├── Kategori.php
+│   │   └── User.php
+│   │
+│   └── Providers/
+│
+├── database/
+│   ├── migrations/
+│   ├── factories/
+│   └── seeders/
+│
+├── public/
+│   └── adminlte3/
+│
+├── resources/
+│   ├── css/
+│   ├── js/
+│   └── views/
+│       ├── layouts/
+│       ├── livewire/
+│       ├── admin/
+│       ├── auth/
+│       └── superadmin/
+│
+├── routes/
+│   └── web.php
+│
+├── .env.example
+├── artisan
+├── composer.json
+├── package.json
+└── vite.config.js
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## ⚙️ Instalasi dan Konfigurasi
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Ikuti langkah-langkah berikut untuk menjalankan project E-Gudang di lingkungan lokal.
 
-## Code of Conduct
+### 1. Clone Repository
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+git clone https://github.com/USERNAME/e-gudang.git
+```
 
-## Security Vulnerabilities
+Masuk ke direktori project:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+cd e-gudang
+```
 
-## License
+### 2. Install Dependency Laravel
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+composer install
+```
+
+### 3. Konfigurasi Environment
+
+Salin file `.env.example` menjadi `.env`.
+
+Untuk Windows:
+
+```bash
+copy .env.example .env
+```
+
+Untuk Linux/macOS:
+
+```bash
+cp .env.example .env
+```
+
+### 4. Generate Application Key
+
+```bash
+php artisan key:generate
+```
+
+### 5. Konfigurasi Database
+
+Secara default, project menyediakan konfigurasi SQLite.
+
+Buat file database jika belum tersedia:
+
+```bash
+php artisan migrate
+```
+
+Pastikan konfigurasi database pada `.env` sudah sesuai:
+
+```env
+DB_CONNECTION=sqlite
+```
+
+Jika ingin menggunakan MySQL, sesuaikan konfigurasi berikut:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=e_gudang
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Pastikan database `e_gudang` sudah dibuat sebelum menjalankan migrasi.
+
+### 6. Jalankan Database Migration
+
+```bash
+php artisan migrate
+```
+
+### 7. Install Dependency Frontend
+
+```bash
+npm install
+```
+
+### 8. Build Assets
+
+```bash
+npm run build
+```
+
+### 9. Jalankan Aplikasi
+
+```bash
+php artisan serve
+```
+
+Buka browser dan akses alamat:
+
+```text
+http://127.0.0.1:8000
+```
+
+Untuk pengembangan frontend menggunakan Vite, jalankan:
+
+```bash
+npm run dev
+```
+
+---
+
+## 🗺️ Routing Aplikasi
+
+Berikut beberapa routing yang telah didefinisikan pada aplikasi:
+
+| URL | Nama Route | Keterangan |
+|---|---|---|
+| `/` | - | Halaman welcome Laravel |
+| `/superadmin/user` | `superadmin.user.index` | Halaman manajemen pengguna |
+| `/superadmin/kategori/index` | `superadmin.kategori.index` | Halaman manajemen kategori |
+| `/superadmin/barang/index` | `superadmin.barang.index` | Halaman data barang Super Admin |
+
+Untuk melihat seluruh routing aplikasi, jalankan:
+
+```bash
+php artisan route:list
+```
+
+---
+
+## 🗄️ Database
+
+### Tabel Users
+
+Digunakan untuk menyimpan informasi pengguna aplikasi.
+
+| Kolom | Keterangan |
+|---|---|
+| id | ID pengguna |
+| nama | Nama pengguna |
+| email | Email pengguna |
+| role | Hak akses pengguna |
+| password | Password yang telah di-hash |
+| remember_token | Token autentikasi |
+| created_at | Waktu data dibuat |
+| updated_at | Waktu data diperbarui |
+
+### Tabel Kategoris
+
+Digunakan untuk menyimpan informasi kategori barang.
+
+| Kolom | Keterangan |
+|---|---|
+| id | ID kategori |
+| nama_kategori | Nama kategori |
+| created_at | Waktu data dibuat |
+| updated_at | Waktu data diperbarui |
+
+---
+
+## 🔧 Pengembangan Selanjutnya
+
+Beberapa fitur yang dapat dikembangkan untuk meningkatkan fungsionalitas aplikasi:
+
+- [ ] Implementasi autentikasi Login dan Logout.
+- [ ] Implementasi middleware dan pembatasan akses berdasarkan role.
+- [ ] Pengembangan CRUD data barang.
+- [ ] Pengelolaan stok barang.
+- [ ] Pencatatan transaksi barang masuk dan barang keluar.
+- [ ] Dashboard statistik inventaris.
+- [ ] Relasi antara barang dan kategori.
+- [ ] Fitur pencarian dan filter data barang.
+- [ ] Export laporan ke PDF dan Excel.
+- [ ] Pengujian aplikasi dan peningkatan keamanan.
+
+---
+
+## 🔐 Catatan Keamanan
+
+- Jangan mengunggah file `.env` ke repository publik.
+- Gunakan `.env.example` sebagai contoh konfigurasi.
+- Pastikan `APP_DEBUG=false` ketika aplikasi digunakan di lingkungan produksi.
+- Gunakan password yang kuat.
+- Terapkan autentikasi dan otorisasi sebelum aplikasi digunakan secara publik.
+- Pastikan kredensial database tidak terekspos.
+
+---
+
+## 👨‍💻 Developer
+
+**E-Gudang – Sistem Informasi Manajemen Gudang**
+
+Dikembangkan sebagai project pengembangan aplikasi web menggunakan Laravel dan Livewire.
+
+---
+
+## 📄 License
+
+Project ini menggunakan berbagai framework dan library open-source. Setiap dependensi mengikuti lisensi masing-masing.
+
